@@ -10,7 +10,7 @@ export const deepClone = <T>(obj: T): T => {
   if (obj instanceof Date) return new Date(obj.getTime()) as T
   if (obj instanceof RegExp) return new RegExp(obj.source, obj.flags) as T
   if (Array.isArray(obj)) return obj.map((item) => deepClone(item)) as T
-  
+
   const cloned = {} as T
   for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -23,11 +23,11 @@ export const deepClone = <T>(obj: T): T => {
 // 深度合并对象
 export const merge = <T extends PlainObject>(...objects: DeepPartial<T>[]): T => {
   const result = {} as T
-  
+
   objects.forEach((obj) => {
     Object.keys(obj).forEach((key) => {
       const value = obj[key]
-      
+
       if (value && typeof value === 'object' && !Array.isArray(value)) {
         result[key as keyof T] = merge(
           (result[key as keyof T] as PlainObject) || {},
@@ -38,26 +38,22 @@ export const merge = <T extends PlainObject>(...objects: DeepPartial<T>[]): T =>
       }
     })
   })
-  
+
   return result
 }
 
 // 获取对象属性值（支持路径）
-export const get = <T = any>(
-  obj: PlainObject,
-  path: string | string[],
-  defaultValue?: T
-): T => {
+export const get = <T = any>(obj: PlainObject, path: string | string[], defaultValue?: T): T => {
   const keys = Array.isArray(path) ? path : path.split('.')
   let result: any = obj
-  
+
   for (const key of keys) {
     if (result === null || result === undefined) {
       return defaultValue as T
     }
     result = result[key]
   }
-  
+
   return result === undefined ? (defaultValue as T) : result
 }
 
@@ -65,7 +61,7 @@ export const get = <T = any>(
 export const set = (obj: PlainObject, path: string | string[], value: any): PlainObject => {
   const keys = Array.isArray(path) ? path : path.split('.')
   const lastKey = keys.pop()!
-  
+
   let current = obj
   for (const key of keys) {
     if (!current[key] || typeof current[key] !== 'object') {
@@ -73,7 +69,7 @@ export const set = (obj: PlainObject, path: string | string[], value: any): Plai
     }
     current = current[key]
   }
-  
+
   current[lastKey] = value
   return obj
 }
@@ -82,7 +78,7 @@ export const set = (obj: PlainObject, path: string | string[], value: any): Plai
 export const remove = (obj: PlainObject, path: string | string[]): boolean => {
   const keys = Array.isArray(path) ? path : path.split('.')
   const lastKey = keys.pop()!
-  
+
   let current = obj
   for (const key of keys) {
     if (!current[key] || typeof current[key] !== 'object') {
@@ -90,7 +86,7 @@ export const remove = (obj: PlainObject, path: string | string[]): boolean => {
     }
     current = current[key]
   }
-  
+
   return delete current[lastKey]
 }
 
@@ -98,22 +94,19 @@ export const remove = (obj: PlainObject, path: string | string[]): boolean => {
 export const has = (obj: PlainObject, path: string | string[]): boolean => {
   const keys = Array.isArray(path) ? path : path.split('.')
   let current = obj
-  
+
   for (const key of keys) {
     if (!current || typeof current !== 'object' || !(key in current)) {
       return false
     }
     current = current[key]
   }
-  
+
   return true
 }
 
 // 挑选对象的指定属性
-export const pick = <T extends PlainObject, K extends keyof T>(
-  obj: T,
-  keys: K[]
-): Pick<T, K> => {
+export const pick = <T extends PlainObject, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> => {
   const result = {} as Pick<T, K>
   keys.forEach((key) => {
     if (key in obj) result[key] = obj[key]
@@ -122,10 +115,7 @@ export const pick = <T extends PlainObject, K extends keyof T>(
 }
 
 // 排除对象的指定属性
-export const omit = <T extends PlainObject, K extends keyof T>(
-  obj: T,
-  keys: K[]
-): Omit<T, K> => {
+export const omit = <T extends PlainObject, K extends keyof T>(obj: T, keys: K[]): Omit<T, K> => {
   const result = { ...obj }
   keys.forEach((key) => delete result[key])
   return result

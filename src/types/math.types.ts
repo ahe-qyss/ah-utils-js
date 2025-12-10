@@ -58,16 +58,10 @@ export interface MathOperations {
   ) => MathResult<T>
 
   /** 数组求和 */
-  sum: <T extends number | undefined = undefined>(
-    arr: MathValue[],
-    digit?: T
-  ) => MathResult<T>
+  sum: <T extends number | undefined = undefined>(arr: MathValue[], digit?: T) => MathResult<T>
 
   /** 数组连乘 */
-  product: <T extends number | undefined = undefined>(
-    arr: MathValue[],
-    digit?: T
-  ) => MathResult<T>
+  product: <T extends number | undefined = undefined>(arr: MathValue[], digit?: T) => MathResult<T>
 
   /** 四舍五入 */
   round: (num: MathValue, digit: number) => string
@@ -75,4 +69,3 @@ export interface MathOperations {
   /** 比较大小 */
   compare: (a: MathValue, b: MathValue) => CompareResult
 }
-

@@ -82,7 +82,7 @@ const tree: TreeNode[] = array.arrayToTree(data)
 
 ---
 
-## 📚 API 文档
+##  API 文档
 
 ### 数学模块 (Math)
 
@@ -261,97 +261,11 @@ const safe = string.escape('<script>alert("xss")</script>')
 
 ---
 
-## 🎯 核心优势
-
-### 1. 解决精度问题
-
-```typescript
-// ❌ JavaScript 原生计算
-0.1 + 0.2                    // 0.30000000000000004
-1 - 0.9                      // 0.09999999999999998
-0.1 * 0.2                    // 0.020000000000000004
-
-// ✅ 使用 ahUtils
-math.add(0.1, 0.2)           // 0.3
-math.subtract(1, 0.9)        // 0.1
-math.multiply(0.1, 0.2)      // 0.02
-```
-
-### 2. 完整的 TypeScript 支持
-
-```typescript
-// 自动类型推导
-const result = math.add(1, 2)          // number
-const formatted = math.add(1, 2, 2)    // string
-
-// 泛型支持
-function calculate<T extends number | undefined>(
-  a: number,
-  b: number,
-  digit?: T
-): MathResult<T> {
-  return math.add(a, b, digit)
-}
-```
-
-### 3. Tree-shaking 优化
-
-```typescript
-// 只打包使用的函数
-import { add, unique } from 'ah-utils-js'
-// 打包体积: ~2KB
-
-// 使用所有功能
-import ahUtils from 'ah-utils-js'
-// 打包体积: ~15KB
-```
-
----
-
-## 🔧 开发
-
-```bash
-# 安装依赖
-pnpm install
-
-# 开发模式
-pnpm dev
-
-# 运行测试
-pnpm test
-
-# 测试 UI 界面
-pnpm test:ui
-
-# 测试覆盖率
-pnpm test:coverage
-
-# 构建
-pnpm build
-
-# 代码检查
-pnpm lint
-
-# 代码格式化
-pnpm format
-
-# 类型检查
-pnpm type-check
-```
-
----
-
 ## 📋 环境要求
 
 - Node.js >= 18.0.0
 - pnpm >= 9.0.0 (推荐)
 - TypeScript >= 5.0.0 (如果使用 TypeScript)
-
----
-
-## 🤝 贡献
-
-欢迎贡献代码！请查看 [贡献指南](./CONTRIBUTING.md)。
 
 ---
 

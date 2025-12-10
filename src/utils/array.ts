@@ -20,12 +20,15 @@ export const group = <T extends Record<string, any>>(
   arr: T[],
   key: keyof T
 ): Record<string, T[]> => {
-  return arr.reduce((acc, item) => {
-    const groupKey = String(item[key])
-    if (!acc[groupKey]) acc[groupKey] = []
-    acc[groupKey].push(item)
-    return acc
-  }, {} as Record<string, T[]>)
+  return arr.reduce(
+    (acc, item) => {
+      const groupKey = String(item[key])
+      if (!acc[groupKey]) acc[groupKey] = []
+      acc[groupKey].push(item)
+      return acc
+    },
+    {} as Record<string, T[]>
+  )
 }
 
 // 数组交集
@@ -64,7 +67,7 @@ export const range = (start: number, end?: number, step = 1): number[] => {
     end = start
     start = 0
   }
-  
+
   const result: number[] = []
   for (let i = start; i < end; i += step) {
     result.push(i)
@@ -77,26 +80,21 @@ export const arrayToTree = <T extends Record<string, any>>(
   arr: T[],
   options: ArrayToTreeOptions = {}
 ): TreeNode<T>[] => {
-  const {
-    id = 'id',
-    parentId = 'parentId',
-    children = 'children',
-    rootParentId = null,
-  } = options
-  
+  const { id = 'id', parentId = 'parentId', children = 'children', rootParentId = null } = options
+
   const map = new Map<any, TreeNode<T>>()
   const result: TreeNode<T>[] = []
-  
+
   // 创建映射
   arr.forEach((item) => {
     map.set(item[id], { ...item, [children]: [] } as unknown as TreeNode<T>)
   })
-  
+
   // 构建树形结构
   arr.forEach((item) => {
     const node = map.get(item[id])!
     const parent = map.get(item[parentId])
-    
+
     if (item[parentId] === rootParentId || !parent) {
       result.push(node)
     } else {
@@ -104,7 +102,7 @@ export const arrayToTree = <T extends Record<string, any>>(
       parent[children].push(node)
     }
   })
-  
+
   return result
 }
 
@@ -114,7 +112,7 @@ export const treeToArray = <T extends TreeNode>(
   childrenKey = 'children'
 ): Omit<T, 'children'>[] => {
   const result: Omit<T, 'children'>[] = []
-  
+
   const traverse = (nodes: T[]) => {
     nodes.forEach((node) => {
       const { [childrenKey]: children, ...rest } = node as any
@@ -124,7 +122,7 @@ export const treeToArray = <T extends TreeNode>(
       }
     })
   }
-  
+
   traverse(tree)
   return result
 }

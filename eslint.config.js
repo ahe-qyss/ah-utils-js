@@ -1,6 +1,6 @@
 import js from '@eslint/js'
 import tseslint from '@typescript-eslint/eslint-plugin'
-import tsparser from '@typescript-eslint/parser'
+import tsParser from '@typescript-eslint/parser'
 import prettierConfig from 'eslint-config-prettier'
 import prettierPlugin from 'eslint-plugin-prettier'
 
@@ -14,7 +14,7 @@ export default [
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
-      parser: tsparser,
+      parser: tsParser,
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',

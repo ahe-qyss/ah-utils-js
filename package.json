@@ -1,7 +1,7 @@
 {
   "name": "ah-utils-js",
   "version": "1.0.0",
-  "description": "现代 JavaScript/TypeScript 工具库，支持高精度数学",
+  "description": "前端工具库，支持高精度数学计算",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -28,7 +28,7 @@
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
     "type-check": "tsc --noEmit",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "keywords": [
     "utils",
@@ -44,16 +44,16 @@
     "dom",
     "browser"
   ],
-  "author": "Your Name <your.email@example.com>",
+  "author": "qyss",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/ah-utils-js.git"
+    "url": "https://github.com/biu-hx/ah-utils-js.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/ah-utils-js/issues"
+    "url": "https://github.com/biu-hx/ah-utils-js/issues"
   },
-  "homepage": "https://github.com/yourusername/ah-utils-js#readme",
+  "homepage": "https://github.com/biu-hx/ah-utils-js#readme",
   "dependencies": {
     "decimal.js": "^10.6.0"
   },

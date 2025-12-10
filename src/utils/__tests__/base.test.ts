@@ -95,7 +95,7 @@ describe('Base Utils', () => {
       expect(isEmpty('')).toBe(true)
       expect(isEmpty([])).toBe(true)
       expect(isEmpty({})).toBe(true)
-      
+
       expect(isEmpty('hello')).toBe(false)
       expect(isEmpty([1])).toBe(false)
       expect(isEmpty({ a: 1 })).toBe(false)
@@ -128,10 +128,9 @@ describe('Base Utils', () => {
       const date1 = new Date('2024-01-01')
       const date2 = new Date('2024-01-01')
       const date3 = new Date('2024-01-02')
-      
+
       expect(isEquals(date1, date2)).toBe(true)
       expect(isEquals(date1, date3)).toBe(false)
     })
   })
 })
-

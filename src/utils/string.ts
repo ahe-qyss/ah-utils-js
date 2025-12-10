@@ -9,12 +9,18 @@ export const camelCase = (str: string): string => {
 
 // 转换为短横线命名
 export const kebabCase = (str: string): string => {
-  return str.replace(/([A-Z])/g, '-$1').toLowerCase().replace(/^-/, '')
+  return str
+    .replace(/([A-Z])/g, '-$1')
+    .toLowerCase()
+    .replace(/^-/, '')
 }
 
 // 转换为下划线命名
 export const snakeCase = (str: string): string => {
-  return str.replace(/([A-Z])/g, '_$1').toLowerCase().replace(/^_/, '')
+  return str
+    .replace(/([A-Z])/g, '_$1')
+    .toLowerCase()
+    .replace(/^_/, '')
 }
 
 // 首字母大写

@@ -21,11 +21,10 @@ const isValidNumber = (value: unknown): value is MathValue => {
 }
 
 // 格式化计算结果
-const formatResult = <T extends number | undefined>(
-  result: Decimal,
-  digit?: T
-): MathResult<T> => {
-  return digit === undefined ? (result.toNumber() as MathResult<T>) : (result.toFixed(digit) as MathResult<T>)
+const formatResult = <T extends number | undefined>(result: Decimal, digit?: T): MathResult<T> => {
+  return digit === undefined
+    ? (result.toNumber() as MathResult<T>)
+    : (result.toFixed(digit) as MathResult<T>)
 }
 
 /**
@@ -93,7 +92,7 @@ export const divide = <T extends number | undefined = undefined>(
   if (!isValidNumber(a) || !isValidNumber(b)) {
     throw new TypeError('参数必须是有效的数字')
   }
-  
+
   const divisor = new Decimal(b)
   if (divisor.isZero()) {
     throw new Error('除数不能为0')
@@ -114,22 +113,19 @@ export const sum = <T extends number | undefined = undefined>(
   if (!Array.isArray(arr)) {
     throw new TypeError('第一个参数必须是数组')
   }
-  
+
   if (arr.length === 0) {
     return (digit === undefined ? 0 : (0).toFixed(digit)) as MathResult<T>
   }
-  
+
   // 验证数组元素
   arr.forEach((item, index) => {
     if (!isValidNumber(item)) {
       throw new TypeError(`数组索引 ${index} 处的元素不是有效的数字`)
     }
   })
-  
-  const result = arr.reduce(
-    (acc: Decimal, num) => acc.plus(new Decimal(num)),
-    new Decimal(0)
-  )
+
+  const result = arr.reduce((acc: Decimal, num) => acc.plus(new Decimal(num)), new Decimal(0))
   return formatResult(result, digit)
 }
 
@@ -146,22 +142,19 @@ export const product = <T extends number | undefined = undefined>(
   if (!Array.isArray(arr)) {
     throw new TypeError('第一个参数必须是数组')
   }
-  
+
   if (arr.length === 0) {
     return (digit === undefined ? 1 : (1).toFixed(digit)) as MathResult<T>
   }
-  
+
   // 验证数组元素
   arr.forEach((item, index) => {
     if (!isValidNumber(item)) {
       throw new TypeError(`数组索引 ${index} 处的元素不是有效的数字`)
     }
   })
-  
-  const result = arr.reduce(
-    (acc: Decimal, num) => acc.times(new Decimal(num)),
-    new Decimal(1)
-  )
+
+  const result = arr.reduce((acc: Decimal, num) => acc.times(new Decimal(num)), new Decimal(1))
   return formatResult(result, digit)
 }
 
@@ -175,11 +168,11 @@ export const round = (num: MathValue, digit: number): string => {
   if (!isValidNumber(num)) {
     throw new TypeError('第一个参数必须是有效的数字')
   }
-  
+
   if (!Number.isInteger(digit) || digit < 0) {
     throw new TypeError('digit 参数必须是非负整数')
   }
-  
+
   return new Decimal(num).toFixed(digit)
 }
 

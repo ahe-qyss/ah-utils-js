@@ -80,18 +80,18 @@ export const isEmpty = (value: unknown): boolean => {
 export const isEquals = (a: unknown, b: unknown): boolean => {
   if (a === b) return true
   if (a === null || b === null || a === undefined || b === undefined) return a === b
-  
+
   const typeA = getType(a)
   const typeB = getType(b)
   if (typeA !== typeB) return false
-  
+
   if (typeA === 'array') {
     const arrA = a as Array<any>
     const arrB = b as Array<any>
     if (arrA.length !== arrB.length) return false
     return arrA.every((item, index) => isEquals(item, arrB[index]))
   }
-  
+
   if (typeA === 'object') {
     const objA = a as Record<string, any>
     const objB = b as Record<string, any>
@@ -100,15 +100,15 @@ export const isEquals = (a: unknown, b: unknown): boolean => {
     if (keysA.length !== keysB.length) return false
     return keysA.every((key) => isEquals(objA[key], objB[key]))
   }
-  
+
   if (typeA === 'date') {
     return (a as Date).getTime() === (b as Date).getTime()
   }
-  
+
   if (typeA === 'regexp') {
     return (a as RegExp).toString() === (b as RegExp).toString()
   }
-  
+
   return false
 }
 

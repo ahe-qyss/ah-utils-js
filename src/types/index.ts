@@ -6,8 +6,8 @@ export type DeepReadonly<T> = {
   readonly [P in keyof T]: T[P] extends Primitive
     ? T[P]
     : T[P] extends Array<infer U>
-    ? ReadonlyArray<DeepReadonly<U>>
-    : DeepReadonly<T[P]>
+      ? ReadonlyArray<DeepReadonly<U>>
+      : DeepReadonly<T[P]>
 }
 
 // 深度可选
@@ -15,8 +15,8 @@ export type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends Primitive
     ? T[P]
     : T[P] extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : DeepPartial<T[P]>
+      ? Array<DeepPartial<U>>
+      : DeepPartial<T[P]>
 }
 
 // 函数类型
@@ -105,4 +105,3 @@ export interface ThrottleOptions {
   /** 结束后是否执行 */
   trailing?: boolean
 }
-
