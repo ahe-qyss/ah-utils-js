@@ -1,7 +1,3 @@
-/**
- * 基础类型判断工具函数
- */
-
 import type { AnyFunction } from '@/types'
 
 // 获取值的类型

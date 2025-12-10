@@ -1,7 +1,3 @@
-/**
- * 数组工具函数
- */
-
 import type { TreeNode, ArrayToTreeOptions } from '@/types'
 
 // 数组去重

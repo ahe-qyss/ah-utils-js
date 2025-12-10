@@ -1,7 +1,3 @@
-/**
- * 对象工具函数
- */
-
 import type { PlainObject, DeepPartial } from '@/types'
 
 // 深度克隆

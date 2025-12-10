@@ -48,12 +48,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/biu-hx/ah-utils-js.git"
+    "url": "https://github.com/ahe-qyss/ah-utils-js"
   },
   "bugs": {
-    "url": "https://github.com/biu-hx/ah-utils-js/issues"
+    "url": "https://github.com/ahe-qyss/ah-utils-js/issues"
   },
-  "homepage": "https://github.com/biu-hx/ah-utils-js#readme",
+  "homepage": "https://github.com/ahe-qyss/ah-utils-js#readme",
   "dependencies": {
     "decimal.js": "^10.6.0"
   },

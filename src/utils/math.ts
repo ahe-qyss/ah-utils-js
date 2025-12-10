@@ -1,8 +1,3 @@
-/**
- * 高精度数学运算模块
- * 基于 decimal.js 实现，解决 JavaScript 浮点数精度问题
- */
-
 import Decimal from 'decimal.js'
 import type { MathValue, MathResult, CompareResult, MathOperations } from '@/types/math.types'
 

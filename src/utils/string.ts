@@ -1,7 +1,3 @@
-/**
- * 字符串工具函数
- */
-
 // 转换为驼峰命名
 export const camelCase = (str: string): string => {
   return str.replace(/[-_\s](\w)/g, (_, c) => c.toUpperCase())
